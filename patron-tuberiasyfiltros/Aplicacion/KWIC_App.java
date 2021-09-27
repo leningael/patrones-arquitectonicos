@@ -12,7 +12,7 @@ public class KWIC_App {
         ArrayList<String> argumentos = new ArrayList<>();
         Collections.addAll(argumentos, args);
         Pipe pipe = new Pipe();
-        pipe.registrar(new PhraseReader());
+        pipe.registrar(new FileReader());
         pipe.registrar(new StopWords());
         pipe.registrar(new KWIC());
         ArrayList<ArrayList<String>> rotationsEachPhrase = (ArrayList<ArrayList<String>>)pipe.ejecutar(argumentos);

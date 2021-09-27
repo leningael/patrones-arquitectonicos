@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import Patron.Filter;
 
-public class PhraseReader extends Filter{
+public class FileReader extends Filter{
 
     @Override
     protected Object procesar(Object entrada) {

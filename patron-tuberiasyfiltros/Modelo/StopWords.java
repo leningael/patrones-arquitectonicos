@@ -16,11 +16,11 @@ public class StopWords extends Filter{
     private ArrayList<ArrayList<String>> removeAllStopWords(ArrayList<String> cadenas, ArrayList<String> stopWordsList){
         ArrayList<ArrayList<String>> wordsOfEachPhrase = new ArrayList<>();
         for(int i = 0; i < cadenas.size(); i++)
-            wordsOfEachPhrase.add(removeStopWord(cadenas.get(i), stopWordsList));
+            wordsOfEachPhrase.add(removeStopWords(cadenas.get(i), stopWordsList));
         return wordsOfEachPhrase;
     }
 
-    private ArrayList<String> removeStopWord(String cadena, ArrayList<String> stopWordsList){
+    private ArrayList<String> removeStopWords(String cadena, ArrayList<String> stopWordsList){
         String[] palabras = cadena.split(" ");
         ArrayList<String> cadenaFinal = new ArrayList<>();
         boolean esStopWord;
