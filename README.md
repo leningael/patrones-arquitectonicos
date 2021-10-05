@@ -1,6 +1,8 @@
 # Patrones Arquitectónicos
 Este repositorio incluye las implementaciones en Java de los siguientes patrones arquitectónicos:  
 - Capas
+- Tuberias y filtros
+
 
 Cada implementación incluye el correspondiente UML en la carpeta del proyecto.
 ## Miembros del equipo
