@@ -9,13 +9,15 @@ public class ControladorVotaciones implements Controlador{
 
     public ControladorVotaciones(Sujeto modelo){
         this.modelo = modelo;
+        modelo.cargarCandidatos();
         vista = new VistaVotaciones(this, modelo);
-        //vista.crearVista();
+        vista.inicializarVista();
         modelo.inicializar();
     }
 
-    public void aumentar() {
-        int numVotos = modelo.getNumVotos();
-        modelo.setNumVotos(numVotos+1);
+    public void aumentar(String nombre) {
+        int numVotos = modelo.getNumVotos(nombre);
+        modelo.registrarVoto(nombre, numVotos+1);
+        modelo.imprimirVoto(nombre);
     }
 }

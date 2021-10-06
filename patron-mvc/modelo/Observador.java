@@ -1,5 +1,5 @@
 package modelo;
 
 public interface Observador {
-    void actualizacion();
+    void actualizacion(String nombre);
 }

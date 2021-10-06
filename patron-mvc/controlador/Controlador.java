@@ -1,5 +1,5 @@
 package controlador;
 
 public interface Controlador {
-    void aumentar();
+    void aumentar(String nombre);
 }
