@@ -9,9 +9,11 @@ public class Encuesta implements Sujeto{
     ArrayList<Observador> observadores = new ArrayList<Observador>();
     HashMap<String, Candidato> candidatos = new HashMap<>();
     FileReader fileReader = new FileReader();
+    FilePrinter filePrinter = new FilePrinter();
     ArrayList<String> nombresCandidatos = new ArrayList<>();
 
     public void cargarCandidatos(){
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
         nombresCandidatos = fileReader.lecturaCandidatos();
         registrarCandidato(nombresCandidatos.get(0));
         registrarCandidato(nombresCandidatos.get(1));
@@ -37,14 +39,14 @@ public class Encuesta implements Sujeto{
     }
 
     public void registrarVoto(String nombre, int numVotos){
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
         candidatos.get(nombre).setNumVotos(numVotos);
         notificarVista(nombre);
     }
 
     public void imprimirVoto(String nombre){
-        FilePrinter fileWriter = new FilePrinter();
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss").format(Calendar.getInstance().getTime());
-        fileWriter.imprimirVoto(nombre, timeStamp);
+        filePrinter.imprimirVoto(nombre, timeStamp);
     }
 
     public int getNumVotos(String nombre){
@@ -62,6 +64,7 @@ public class Encuesta implements Sujeto{
     }
     
     public void notificarVista(String nombre){
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
         for(int i = 0; i < observadores.size(); i++){
             Observador observador = (Observador)observadores.get(i);
             observador.actualizacion(nombre);

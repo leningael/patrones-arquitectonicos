@@ -14,6 +14,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import modelo.FilePrinter;
 import modelo.Observador;
 import modelo.Sujeto;
 
@@ -22,6 +23,7 @@ public class VistaGraficaBarras implements Observador{
     JFrame ventana;
     JPanel panel;
     DefaultCategoryDataset datos;
+    FilePrinter filePrinter = new FilePrinter();
 
     public VistaGraficaBarras(Sujeto modelo) {
         this.modelo = modelo;
@@ -29,6 +31,7 @@ public class VistaGraficaBarras implements Observador{
     }
 
     public void inicializarVista(){
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
         ventana = new JFrame();
         ventana.setSize(500,500);
         ventana.setTitle("GraficaDeBarras");
@@ -78,6 +81,7 @@ public class VistaGraficaBarras implements Observador{
         panel.add(btnRegresar);
         btnRegresar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
                 ventana.dispose();
             }
         });
@@ -85,6 +89,7 @@ public class VistaGraficaBarras implements Observador{
 
 	@Override
 	public void actualizacion(String nombre) {
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
 		int numVotos = modelo.getNumVotos(nombre);
         String key;
         key = (String)datos.getRowKey(0);

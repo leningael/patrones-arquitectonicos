@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import controlador.Controlador;
+import modelo.FilePrinter;
 import modelo.Observador;
 import modelo.Sujeto;
 
@@ -27,6 +28,7 @@ public class VistaVotaciones implements Observador{
     JLabel contador2;
     JLabel contador3;
     ButtonGroup grupoRadioBotones;
+    FilePrinter filePrinter = new FilePrinter();
 
     public VistaVotaciones(Controlador controlador, Sujeto modelo) {
         this.modelo = modelo;
@@ -35,6 +37,7 @@ public class VistaVotaciones implements Observador{
     }
 
     public void inicializarVista(){
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
         ventana = new JFrame();
         ventana.setSize(800,600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,23 +122,31 @@ public class VistaVotaciones implements Observador{
         panel.add(btnGrafica2);
         btnVotar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
                 controlador.aumentar(grupoRadioBotones.getSelection().getActionCommand());
             }
         });
         btnGrafica1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
                 new VistaGraficaBarras(modelo).inicializarVista();
             }
         });
         btnGrafica2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
                 new VistaGraficaPastel(modelo).inicializarVista();;
             }
         });
     }
 
     public void actualizacion(String nombre) {
+        filePrinter.imprimirBitacora(this.getClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName());
         int numVotos = modelo.getNumVotos(nombre);
+        actualizarVista(nombre,numVotos);
+    }
+
+    public void actualizarVista(String nombre, int numVotos){
         if(nombre.equals(radioBtn1.getText()))
             contador1.setText("Num. votos: " + numVotos);
         if(nombre.equals(radioBtn2.getText()))
