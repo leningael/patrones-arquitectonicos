@@ -124,14 +124,12 @@ public class VistaVotaciones implements Observador{
         });
         btnGrafica1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                new VistaGraficaBarras(controlador, modelo).inicializarVista();
-                ventana.dispose();
+                new VistaGraficaBarras(modelo).inicializarVista();
             }
         });
         btnGrafica2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                new VistaGraficaPastel(controlador, modelo).inicializarVista();
-                ventana.dispose();
+                new VistaGraficaPastel(modelo).inicializarVista();;
             }
         });
     }
